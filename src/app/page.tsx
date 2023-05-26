@@ -68,7 +68,7 @@ export default function HomePage(): JSX.Element {
     }
   };
 
-  const handleDownloadFile = (id: string) => () => downloadFile(id);
+  const handleDownloadFile = (url: string) => () => downloadFile(url);
   const handleTransformFile = (id: string) => () => transformFile(id, { x: 2, y: 2, z: 2 }, { x: 0, y: 0, z: 0 });
 
   useEffect(() => {
@@ -141,7 +141,9 @@ export default function HomePage(): JSX.Element {
                   <span className="flex-1 text-left">{file.name}</span>
                 )}
 
-                <span className="text-gray-500">{dateFormat(new Date(file.creation_date), 'yyyy-MM-dd hh:mm aa')}</span>
+                <span className="text-gray-500">
+                  {dateFormat(file?.creation_date ? new Date(file?.creation_date) : new Date(), 'yyyy-MM-dd hh:mm aa')}
+                </span>
                 <span className="w-32 text-gray-500">{bytes(file.size)}</span>
                 <a className="link-primary link w-24" onClick={handleTransformFile(file.id)}>
                   Transform x2
@@ -150,7 +152,7 @@ export default function HomePage(): JSX.Element {
                 <div className="flex w-24 items-center justify-end">
                   <button
                     className="btn-ghost btn-square btn-sm btn hover:bg-info hover:text-info-content"
-                    onClick={handleDownloadFile(file.id)}
+                    onClick={handleDownloadFile(file.url)}
                   >
                     <FaDownload />
                   </button>

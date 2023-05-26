@@ -35,7 +35,6 @@ The transform feature is displayed as a link with hardcoded arguments, but keep 
 ## Interfacing your API with the existing Web App
 
 Modify the arguments passed to each function in `./src/api/functions.ts`.
-Look for `// Todo:` comments or `<replace-me>` placeholders.
 
 ## Transform and Download feature
 
